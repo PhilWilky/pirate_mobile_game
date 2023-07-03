@@ -26,9 +26,19 @@ public class cball : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void EnemyHit(Collision enemyColl)
     {
-        Destroy(collision.gameObject);
+         Destroy(enemyColl.gameObject);
+    }
+
+    private void OnCollisionEnter(Collision enemyColl)
+    {
+        if (enemyColl.gameObject.CompareTag("Enemy"))
+        {
+            EnemyHit(enemyColl);
+            Destroy(gameObject);
+        }
+
     }
 
 }
